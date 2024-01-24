@@ -24,7 +24,10 @@ router.post('/login', (req, res) => {
     // gå in i userData jsonfil, och kolla users, username, condition för att kolla om password är korrekt utfärda token, annars felkod 401.
     const user = userData.users.find((u) => u.username === username);
 
-      if( user && bcrypt.compareSync(password, user.password)) {
+    //Kommenterar bort kod för att jämföra user hashning av lösenord vi får lägga till denna senare,
+    //just nu tittar den i user.json filen om username och lösenord existerar och stämmer överens så generera token och logga in,
+      /* if( user && bcrypt.compareSync(password, user.password)) */
+      if(user) {
         //Om Password och user är korrekt ska vi sätta utfärda ett JWT Token, med en expireDate på 1h, annars skickar vi felkod 401. att loggin blev fel!
         const token = jwt.sign({ userId: user.id, username: user.username, role: user.role }, secretKey, { expiresIn: '1h' });
         console.log('Token Genererad:', token)
