@@ -13,11 +13,17 @@ const userData = JSON.parse(fs.readFileSync('users.json', 'utf-8'));
 //Om vi ska ha registration så ska det ligga här!
 
 
-
+// Login endpoint där vi ska hantera login requesten och ge ett JWT Token?
 router.post('/login', (req, res) => {
     //Condition för att kolla om user är valid med email och password, JWT Token sign, vi ska ge session id och tid för token expiration
     //annars om inte valid user skicka felkod 401. 
 });
+
+//Middleware function för att authentisera JWT Token
+
+
+
+
 
 
 
