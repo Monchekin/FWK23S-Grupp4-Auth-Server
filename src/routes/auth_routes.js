@@ -36,12 +36,28 @@ router.post('/login', (req, res) => {
       }
 });
 
-//Validering och authentisering med middleware JWT Token läggs in i backend data_routes!!! 
-// Lägger en kommentar om detta bara sålänge så man kommer ihåg.
+//MiddleWare function för att authentisera sig med JWT Token
+function authCheckToken(req, res, next) {
+  const authHeader = req.headers.split('')[1];
 
+  //condition om inget token skicka felmeddelande
+  if(!token) {
+    return res.status(401).json({ message: 'Unauthorized!' });
+  }
+ //Verifiera jwt token + secret key skicka annars error om token inte är valid. 
+  jwt.verify(token, secretKey, (err, user) => {
+    if(err) {
+      return res.status(403).json({ message: 'Token is not valid!'});
+    }
+    req.user = user;
+    next();
+  });
+}
 
-
-
+// Verifiera Token endpoint
+router.get('/verify', authCheckToken, (req, res) => {
+  res.json(req.user);
+});
 
 /* router.post('/login', (req, res) => {
   const { email, password } = req.body;
