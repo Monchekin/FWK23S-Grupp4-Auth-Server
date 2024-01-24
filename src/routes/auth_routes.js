@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const env = require('dotenv');
 
 const router = express.Router();
-env.config();
 const secretKey = process.env.SECRET_KEY || 'default_secret_key'; // Ersätt denna key med en stark och säker nyckel senare!!!
 
 //Ladda user data från user.json filen där vi sparar all mockdata om users
@@ -29,7 +28,7 @@ router.post('/login', (req, res) => {
       /* if( user && bcrypt.compareSync(password, user.password)) */
       if(user) {
         //Om Password och user är korrekt ska vi sätta utfärda ett JWT Token, med en expireDate på 1h, annars skickar vi felkod 401. att loggin blev fel!
-        const token = jwt.sign({ userId: user.id, username: user.username, role: user.role }, secretKey, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, username: user.username, role: user.role }, 'secretKey', { expiresIn: '1h' });
         console.log('Token Genererad:', token)
         res.json({ token });
       } else {
@@ -42,6 +41,7 @@ router.post('/login', (req, res) => {
 function authCheckToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
+  console.log('Received token for verification:', token);
 
   //condition om inget token skicka felmeddelande
   if(!token) {
@@ -60,6 +60,7 @@ function authCheckToken(req, res, next) {
 
 // Verifiera Token endpoint
 router.get('/verify', authCheckToken, (req, res) => {
+  console.log('Received request for /secret-data:', req.user);
   res.json(req.user);
 });
 
