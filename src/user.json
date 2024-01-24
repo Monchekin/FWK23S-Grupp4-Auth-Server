@@ -1,2 +1,19 @@
-[{"username": "admin@example", "password": "password"},
-{"username": "user@example", "password": "password1"}]
+{
+    "users": [
+    { 
+        "id": 1,
+        "username": "admin",
+        "password": "password123",
+        "email": "admin@example.com",
+        "role": "admin"
+    },
+
+    {
+        "id": 2,
+        "username": "user",
+        "password": "user123",
+        "email": "user@example.com",
+        "role": "user"
+    }
+  ]
+}
