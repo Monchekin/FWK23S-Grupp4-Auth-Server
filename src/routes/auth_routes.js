@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
         //Om Password och user är korrekt ska vi sätta utfärda ett JWT Token, med en expireDate på 1h, annars skickar vi felkod 401. att loggin blev fel!
         const token = jwt.sign({ userId: user.userId, username: user.username }, secretKey, { expiresIn: '1h' });
         res.json({ token });
-        console.log(token)
+        console.log('Token Genererad:', token)
       } else {
         res.status(401).json({ error: 'Invalid Login'})
       }
@@ -38,7 +38,8 @@ router.post('/login', (req, res) => {
 
 //MiddleWare function för att authentisera sig med JWT Token
 function authCheckToken(req, res, next) {
-  const authHeader = req.headers.split('')[1];
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
   //condition om inget token skicka felmeddelande
   if(!token) {
@@ -47,7 +48,8 @@ function authCheckToken(req, res, next) {
  //Verifiera jwt token + secret key skicka annars error om token inte är valid. 
   jwt.verify(token, secretKey, (err, user) => {
     if(err) {
-      return res.status(403).json({ message: 'Token is not valid!'});
+      console.error('JWT Verification Error:', err);
+      return res.status(403).json({ message: 'Token is not valid!', error: err.message});
     }
     req.user = user;
     next();
