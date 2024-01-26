@@ -9,6 +9,12 @@ env.config();
 const router = express.Router();
 const SECRET_KEY = process.env.SECRET_KEY || 'yourFallbackSecretKey';
 
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');  // Replace with your frontend origin
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 //Ladda user data från user.json filen där vi sparar all mockdata om users
 const userDataPath = `${__dirname}/../user.json`;
 const userData = JSON.parse(fs.readFileSync(userDataPath, 'utf-8'));
