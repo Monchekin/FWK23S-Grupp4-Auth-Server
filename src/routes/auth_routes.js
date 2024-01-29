@@ -26,7 +26,6 @@ router.post('/login', (req, res) => {
     
     // gå in i userData jsonfil, och kolla users, username, condition för att kolla om password är korrekt utfärda token, annars felkod 401.
     const user = userData.users.find((users) => users.username === username);
-    
     //Kommenterar bort kod för att jämföra user hashning av lösenord vi får lägga till denna senare,
     //just nu tittar den i user.json filen om username och lösenord existerar och stämmer överens så generera token och logga in,  
     /* if( user && bcrypt.compareSync(password, user.password)) */
@@ -35,14 +34,22 @@ router.post('/login', (req, res) => {
         
         //Generera en JWT Token med Payload info...
         const token = jwt.sign(
-          { 
-            username: user.username,
-            role: user.role },
-            SECRET_KEY || 'yourFallbackSecretKey',
-          { expiresIn: '24h' });
+             { 
+                username: user.username,
+                role: user.role },
+                SECRET_KEY || 'yourFallbackSecretKey',
+             { expiresIn: '1h' });
+
             // Sätta token i en HTTP-only Cookie..
-              res.cookie('jwt', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000}); // MaxAge är i millisekunder, (1 timme nu.)
+            res.cookie('jwt', token,
+             { httpOnly: true, 
+              secure: true, 
+              sameSite: 'strict', 
+              maxAge: 3600000
+            }); // MaxAge är i millisekunder, (1 timme nu.)
+            
               console.log('Token Genererad:', token)
+            
               res.json({ token });
       } else {
         console.log('Login Failed!', username, password)
@@ -75,7 +82,7 @@ function authCheckToken(req, res, next) {
 }
 
 // Verifiera Token endpoint
-  router.get('/data', authCheckToken, (req, res) => {
+  router.get('http://localhost:3002/data', authCheckToken, (req, res) => {
   res.json(req.user);
 });
 
