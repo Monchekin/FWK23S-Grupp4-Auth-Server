@@ -10,7 +10,7 @@ const frameguard = require('frameguard');
 const csp = require('helmet-csp');
 const noSniff = require ('dont-sniff-mimetype');
 const referrerPolicy = require ('referrer-policy');
-const hidePoweredBy = require('hide-power-by')
+const hidePoweredBy = require('hide-powered-by')
 
 const app = express();
 
