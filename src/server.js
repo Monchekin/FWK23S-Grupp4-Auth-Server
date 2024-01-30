@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth_routes');
 const cors = require('cors'); 
 const cookieParser = require('cookie-parser');
+const authCheckToken = require('./routes/authCheckToken');
 
 //mot olika attacker:
 const helmet = require ('helmet');
@@ -12,12 +13,15 @@ const noSniff = require ('dont-sniff-mimetype');
 const referrerPolicy = require ('referrer-policy');
 
 const app = express();
+app.use(authCheckToken);
 
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
   })); 
 app.use(bodyParser.json());
+//Routes...
+
 app.use('/auth', authRoutes);
 app.use(cookieParser());;
 

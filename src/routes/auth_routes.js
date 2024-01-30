@@ -49,29 +49,8 @@ router.post('/login', (req, res) => {
   }
 });
 
-function authCheckToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  console.log('Mottaget token för verifiering:', token);
-
-  const jwtCookie = req.cookies.jwt;
-
-  if (!token && !jwtCookie) {
-    return res.status(401).json({ message: 'Obehörig åtkomst!' });
-  }
-
-  jwt.verify(jwtCookie || token, SECRET_KEY, (err, user) => {
-    if (err) {
-      console.error('JWT-verifieringsfel:', err);
-      return res.status(403).json({ message: 'Token är inte giltigt!', error: err.message });
-    }
-    req.user = user;
-    next();
-  });
-}
-
-router.get('/data', authCheckToken, (req, res) => {
+/* router.get('/data', authCheckToken, (req, res) => {
   res.json(req.user);
-});
+}); */
 
 module.exports = router;
