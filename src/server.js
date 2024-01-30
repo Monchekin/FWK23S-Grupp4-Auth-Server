@@ -10,7 +10,6 @@ const frameguard = require('frameguard');
 const csp = require('helmet-csp');
 const noSniff = require ('dont-sniff-mimetype');
 const referrerPolicy = require ('referrer-policy');
-const hidePoweredBy = require('hide-powered-by')
 
 const app = express();
 
@@ -23,26 +22,38 @@ app.use('/auth', authRoutes);
 app.use(cookieParser());;
 
 
+// Använder helmet middleware med/som standardinställningar
 app.use(helmet());
 
-//mot clickjacking
-app.use(frameguard({ action: 'deny' })); //'DENY' betyder att webbläsaren inte tillåter att sidan inramas av någon annan sida.
+// Mot clickjacking
+app.use(frameguard({ action: 'deny' })); // 'DENY' betyder att webbläsaren inte tillåter att sidan inramas av någon annan sida.
 
-//mot XSS-attacker
+// Mot XSS-attacker
 app.use(helmet.xssFilter());
-app.use(csp({ 
-  directives: { defaultSrc: ["'self'"]}
-}));
 
-//mot MIME-sniffing
+// Mot MIME-sniffing
 app.use(noSniff());
 
-//mot Referrer Leakage
-app.use (referrerPolicy({policy: 'same-origin'}));
+// Mot Referrer Leakage
+app.use(referrerPolicy({ policy: 'same-origin', policy: 'strict-origin-when-cross-origin' }));
 
-//mot Information Disclosure
-app.use(hidePoweredBy());
+// Anpassa CSP (Content Security Policy)
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'"],   // Tillåts bara laddning från samma domän och protokoll som sidan själv har.
+      scriptSrc: ["'self'"],    // Förhindrar att externa skript körs på sidan.
+      objectSrc: ["'none'"],    // Här förbjuds alla objekt från att laddas ex. Flash, Java-applet
+    },
+  })
+);
 
+
+// Ytterligare Content Security Policy
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; object-src 'none';");
+  next();
+});
 
 module.exports = app;
 
