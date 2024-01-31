@@ -4,7 +4,7 @@ const authRoutes = require('./routes/auth_routes');
 const cors = require('cors'); 
 const cookieParser = require('cookie-parser');
 const authCheckToken = require('./routes/authMiddleware');
-//const registerRouter = require('./routes/register_route');
+const registerRouter = require('./routes/register_route');
 
 //mot olika attacker:
 const helmet = require ('helmet');
@@ -19,10 +19,10 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser());
-app.use('/auth', authCheckToken);
+app.use('/auth/login', authCheckToken);
 app.use(bodyParser.json());
 //Routes...
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes, registerRouter);
 
 // Använder helmet middleware med/som standardinställningar
 app.use(helmet());
