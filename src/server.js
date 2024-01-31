@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth_routes');
 const cors = require('cors'); 
 const cookieParser = require('cookie-parser');
-const authCheckToken = require('./routes/authCheckToken');
+const authCheckToken = require('./routes/authMiddleware');
 
 //mot olika attacker:
 const helmet = require ('helmet');
@@ -16,20 +16,18 @@ const app = express();
 app.use(authCheckToken);
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })); 
-app.use(bodyParser.json());
-//Routes...
+  origin: 'http://localhost:3000',
+  credentials: true,
+})); 
 
+app.use(bodyParser.json());
 app.use('/auth', authRoutes);
 app.use(cookieParser());;
-
 
 // Använder helmet middleware med/som standardinställningar
 app.use(helmet());
 
-// Mot clickjacking
+// Mot Clickjacking
 app.use(frameguard({ action: 'deny' })); // 'DENY' betyder att webbläsaren inte tillåter att sidan inramas av någon annan sida.
 
 // Mot XSS-attacker
@@ -52,12 +50,6 @@ app.use(
   })
 );
 
-
-// Ytterligare Content Security Policy
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; object-src 'none';");
-  next();
-});
-
 module.exports = app;
+
 
