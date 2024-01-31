@@ -97,6 +97,20 @@
       "password": "$2b$10$vF.w.2iqztLmXTVyi5Bo.u8e5gADDGopeez98ul9AFVXVWzJ29NAy",
       "email": "linahejhej@example.com",
       "role": "user"
+    },
+    {
+      "id": 15,
+      "username": "robertfunkardetnu",
+      "password": "$2b$10$t1mP8IoIE/w36Flb8sKAU.jTEh31EBKZlWkHpaPylH5PXyBCx6oni",
+      "email": "robertfunkardetnu@example.com",
+      "role": "user"
+    },
+    {
+      "id": 16,
+      "username": "robban123",
+      "password": "$2b$10$8mQ1Xj60TeuUHFSwCcG7Ce3kbfYdnYfzCw3VlR4WQRcpOanvy.zOu",
+      "email": "robban123@example.com",
+      "role": "user"
     }
   ]
 }
