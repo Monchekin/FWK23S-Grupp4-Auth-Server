@@ -15,7 +15,7 @@ function authCheckToken(req, res, next) {
         }
 
         const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1] || process.env.TOKEN_ENV;
+        const token = authHeader && authHeader.split(' ')[1]
 
         //om ingen token eller cookie finns skicka annars felkod 401
         const jwtCookie = req.cookies.jwt;
@@ -24,11 +24,10 @@ function authCheckToken(req, res, next) {
             console.log('No token found. Allowing access without authentication.');
             return next()
         }
-        
+
         if (!token && !jwtCookie) {
             return res.status(401).json({ message: 'Unauthorized!' });
         }
-
         // Om det finns en token så verifiera den.
         jwt.verify(jwtCookie || token, SECRET_KEY, (err, user) => {
             if (err) {

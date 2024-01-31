@@ -13,6 +13,20 @@
       "password": "$2b$10$R8dHO/kEXd6cRBQyNtfMDOSelTpI3dOkkAdMBe0Y20w9VwVEpdEYe",
       "email": "admin123@example.com",
       "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "robertfunkarnu",
+      "password": "$2b$10$XjNEPolteY30BBlBB825MeagbsTVctbZkPMOhee1XFZluXslfU1DW",
+      "email": "robertfunkarnu@example.com",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "username": "admin12345",
+      "password": "$2b$10$zf8d5YsqaQIYUq.WC5/EBeL4vNs3thPq6hx1CdL3Hp0W0qwbXjPwS",
+      "email": "admin12345@example.com",
+      "role": "user"
     }
   ]
 }
