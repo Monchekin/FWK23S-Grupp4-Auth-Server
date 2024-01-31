@@ -76,6 +76,27 @@
       "password": "$2b$10$n5DxojwmTN6n3R3dSx0GeeQO0EXQ/iO9ZWyhwjPx8kXsFo/df3z5q",
       "email": "peterstorarm@example.com",
       "role": "user"
+    },
+    {
+      "id": 12,
+      "username": "helena1",
+      "password": "$2b$10$u7Iy89YAFj2WxWHFuBZzf.IWq3bJ07u/n/TFVYCHLZfDwC8GzABLO",
+      "email": "helena1@example.com",
+      "role": "user"
+    },
+    {
+      "id": 13,
+      "username": "jonasbb",
+      "password": "$2b$10$r7xdidrf4hBU0LGcuIvyeuiXJ.bnwrOl14RV/67KptMbRUYQ3QCcC",
+      "email": "jonasbb@example.com",
+      "role": "user"
+    },
+    {
+      "id": 14,
+      "username": "linahejhej",
+      "password": "$2b$10$vF.w.2iqztLmXTVyi5Bo.u8e5gADDGopeez98ul9AFVXVWzJ29NAy",
+      "email": "linahejhej@example.com",
+      "role": "user"
     }
   ]
 }

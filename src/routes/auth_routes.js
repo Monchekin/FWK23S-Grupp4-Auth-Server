@@ -15,15 +15,17 @@ router.use((req, res, next) => {
   next();
 });
 
+//Databas för att läsa ner users och path till databas user.json
 const userFilePath = path.join(__dirname, 'user.json');
 const userData = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
 
-//Login endpoint..
+/* LOGIN ENDPOINT */
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = userData.users.find((users) => users.username === username);
 
+    //Kolla user om users hashade password är korrekt, Generera JWT Token och http-cookie 
     if (user) {
       console.log('User found:', user);
       const passwordMatch = await bcrypt.compare(password, user.password);
@@ -34,18 +36,17 @@ router.post('/login', async (req, res) => {
             role: user.role
           },
           SECRET_KEY || 'yourFallbackSecretKey',
-          { expiresIn: '24h' }
+          { expiresIn: '24h' } // Expire time på JWT Token.
         );
 
         res.cookie('jwt', token, {
           httpOnly: true,
           secure: true,
           sameSite: 'strict',
-          maxAge: 86400000
+          maxAge: 86400000 // 24h expire time - denna sätts i millisekunder om ni vill ändra.
         });
 
         console.log('TOKEN GENERERAD:', token);
-
         res.json({ token });
       } else {
         console.log('Wrong password for user:', username);
