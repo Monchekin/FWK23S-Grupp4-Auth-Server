@@ -4,11 +4,12 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const env = require('dotenv');
+const path = require('path');
 env.config();
 
 const router = express.Router();
+router.use(cookieParser())
 const SECRET_KEY = process.env.SECRET_KEY || 'yourFallbackSecretKey';
-router.use(cookieParser());
 
 router.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -16,8 +17,12 @@ router.use((req, res, next) => {
   next();
 });
 
-const userDataPath = `${__dirname}/../user.json`;
-const userData = JSON.parse(fs.readFileSync(userDataPath, 'utf-8'));
+const userFilePath = path.join(__dirname, '../../../user.json');
+//const userData = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
+
+function loadUserData() {
+  return JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
+}
 
 // Registrerings-endpoint för att skapa nya användare 
 router.post('/register', async (req, res) => {
@@ -38,13 +43,13 @@ try {
     id: userData.users.length + 1, 
     username,
     password: hashedPassword,
-    email,
-    role
+    email: `${username}@example.com`,
+    role: 'user',
   };
 
 // Lägg till den nya användaren och spara tillbaka till filen
 userData.users.push(newUser);
-    fs.writeFileSync(userDataPath, JSON.stringify(userData), 'utf-8');
+    fs.writeFileSync(userFilePath, JSON.stringify(userData), 'utf-8');
     res.status(201).json({ message: 'Användaren skapad.' });
   } catch (error) {
     res.status(500).json({ message: 'Ett fel inträffade vid registrering.', error });
@@ -86,9 +91,5 @@ if (user && await bcrypt.compare(password, user.password)) {
     res.status(401).json({ error: 'Ogiltig inloggning' });
   }
 });
-
-/* router.get('/data', authCheckToken, (req, res) => {
-  res.json(req.user);
-}); */
 
 module.exports = router;
