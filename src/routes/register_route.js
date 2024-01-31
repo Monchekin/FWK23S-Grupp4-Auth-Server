@@ -38,7 +38,6 @@ router.post('/register', async (req, res) => {
       // Sparar till user.json med ny användardata
       fs.writeFileSync(userFilePath, JSON.stringify(userData, null, 2), 'utf-8');
   
-      
       res.json({ message: 'User registered!' });
       console.log('User Successfully Registered to DB')
     } catch (error) {

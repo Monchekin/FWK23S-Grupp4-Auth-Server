@@ -27,6 +27,62 @@
       "password": "$2b$10$zf8d5YsqaQIYUq.WC5/EBeL4vNs3thPq6hx1CdL3Hp0W0qwbXjPwS",
       "email": "admin12345@example.com",
       "role": "user"
+    },
+    {
+      "id": 5,
+      "username": "koshin123",
+      "password": "$2b$10$3yzqg3vROi8uFrFLCjfhieKpvLyKBNBbB7AhRBpr5Q8mi6wmLYstm",
+      "email": "koshin123@example.com",
+      "role": "admin"
+    },
+    {
+      "id": 6,
+      "username": "mike123",
+      "password": "$2b$10$XxKbwxRxnkOOTEZxlGh7C.Kgx/iTAQLTsC9cn19EEXGlwkAUjAa/K",
+      "email": "mike123@example.com",
+      "role": "admin"
+    },
+    {
+      "id": 7,
+      "username": "koshin999",
+      "password": "$2b$10$PIrwNG6aeSONhv9YlDYeLuk.g7P7AVdlGhnWflETvD6em8ApRiLgu",
+      "email": "koshin999@example.com",
+      "role": "user"
+    },
+    {
+      "id": 8,
+      "username": "koshin999",
+      "password": "$2b$10$ykPK6Gt3qoNbWru5ELVeiefyW7gbqwRchZAIwvDwGT4GumJhOHAca",
+      "email": "koshin999@example.com",
+      "role": "user"
+    },
+    {
+      "id": 9,
+      "username": "koshin999",
+      "password": "$2b$10$D2U8dPLofibjbjF34v6X2eqkb3H5No.QeKnc7qyQfa2kgydGxCHhW",
+      "email": "koshin999@example.com",
+      "role": "user"
+    },
+    {
+      "id": 10,
+      "username": "linapina",
+      "password": "$2b$10$8J3VR89hw8H.mSTSjV/KCeSkj0PaBNe5.cQccm7QuXbt48k/Fhujy",
+      "email": "linapina@example.com",
+      "role": "user"
+    },
+    {
+      "id": 11,
+      "username": "mikeymusse",
+      "password": "$2b$10$c4uSj.I1uhVWu1h36wBdC.To8TGwPDX.oup.y/ySzd3.J08TAnt26",
+      "email": "mikeymusse@example.com",
+      "role": "user"
+    },
+    {
+      "id": 12,
+      "username": "mickehej",
+      "password": "$2b$10$nLsi7U.bzlyGOkXbTfcWD.pVuT6/u9MZShgKNDT4Xk3Mv3uRngCS2",
+      "email": "mickehej@example.com",
+      "role": "user"
     }
   ]
 }
