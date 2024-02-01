@@ -19,7 +19,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser());
-app.use('/auth/login', authCheckToken);
+app.use('/auth/login', authCheckToken); // måste authentiserings checka med cookiemiddleware på login,
 app.use(bodyParser.json());
 //Routes...
 app.use('/auth', authRoutes, registerRouter);

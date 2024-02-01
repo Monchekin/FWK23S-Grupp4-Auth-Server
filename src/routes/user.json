@@ -12,7 +12,7 @@
       "username": "admin123",
       "password": "$2b$10$R8dHO/kEXd6cRBQyNtfMDOSelTpI3dOkkAdMBe0Y20w9VwVEpdEYe",
       "email": "admin123@example.com",
-      "role": "user"
+      "role": "admin"
     },
     {
       "id": 3,
@@ -82,6 +82,27 @@
       "username": "mickehej",
       "password": "$2b$10$nLsi7U.bzlyGOkXbTfcWD.pVuT6/u9MZShgKNDT4Xk3Mv3uRngCS2",
       "email": "mickehej@example.com",
+      "role": "user"
+    },
+    {
+      "id": 13,
+      "username": "johan123",
+      "password": "$2b$10$sgvy1DtwWXdFS3mFjMQWauc.dSDMZ8fnokVqf5AtxXEcOFb3So7sK",
+      "email": "johan123@example.com",
+      "role": "user"
+    },
+    {
+      "id": 14,
+      "username": "robert12345",
+      "password": "$2b$10$OqaGhg2ekmzBNXxe3PfPLue2gVGSDsttyjVpBxYarsLFwuPrFHClu",
+      "email": "robert12345@example.com",
+      "role": "user"
+    },
+    {
+      "id": 15,
+      "username": "pelli123",
+      "password": "$2b$10$GWbTI2o0U8c4SwkIqpCYAu7U1lPcGwTQMi/xu.2eXHynDT1VjO2bO",
+      "email": "pelli123@example.com",
       "role": "user"
     }
   ]

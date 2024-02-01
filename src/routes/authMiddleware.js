@@ -5,11 +5,11 @@ env.config();
 
 const SECRET_KEY = process.env.SECRET_KEY || 'yourFallbackSecretKey';
 
-// Cookie parse middleware
+// Cookie parse middleware authentisering som vi använder separat och kan specificera sig vart vart vi vill authentisera mot.
 function authCheckToken(req, res, next) {
     //om ingen token eller cookie finns skicka annars felkod 401
     const jwtCookie = req.cookies.jwt;
-    
+
     console.log('Request Cookies:', jwtCookie);
     cookieParser()(req, res, function(err) {
         if (err) {

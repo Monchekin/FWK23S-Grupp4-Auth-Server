@@ -11,8 +11,7 @@ const userData = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
 //Register newUser endpoint..
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
-  
-    try {
+      try {
       // Generera salt 
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);

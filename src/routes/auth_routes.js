@@ -48,10 +48,7 @@ router.post('/login', async (req, res) => {
 
         console.log('TOKEN GENERERAD:', token);
         res.json({ token });
-      } else {
-        console.log('Wrong password for user:', username);
-        res.status(401).json({ error: 'Ogiltigt lösenord för användaren' });
-      }
+      } 
     }
   } catch (error) {
     console.error('Error during login:', error);
